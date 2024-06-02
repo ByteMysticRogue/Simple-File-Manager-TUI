@@ -3,11 +3,35 @@
 
 # check if dialog is installed or not
 
-dialog_location=$(which dialog)
+install_dialog() {
+    local package_manager=$1
+    if sudo "$package_manager" install dialog -y; then
+        echo "dialog installed successfully."
+    else
+        echo "Failed to install dialog using $package_manager."
+        exit 1
+    fi
+}
 
-if [[ -z $dialog_location ]]; then
+package_managers=("apt-get" "yum" "dnf")
+
+for pm in "${package_managers[@]}"; do
+    if command -v "$pm" > /dev/null; then
+        package_manager=$pm
+        break
+    fi
+done
+
+# Check if dialog is installed
+if ! command -v dialog > /dev/null; then
     echo 'dialog is not installed on system.'
-    apt install dialog -y
+    if [[ -n $package_manager ]]; then
+        echo 'Installing dialog package...' && sleep 1
+        install_dialog "$package_manager"
+    else
+        echo "No compatible package manager found. Please install 'dialog' manually."
+        exit 1
+    fi
 else
     echo "dialog is installed on system."
 fi
