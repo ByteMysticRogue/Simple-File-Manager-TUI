@@ -39,7 +39,6 @@ dir_only(){
 
 dirNfile() {
     # list all dirs and files
-    local script_dir=$(dirname "$0")
     local all=$(find $script_dir -maxdepth 1)
 
     # Prepare the list for dialog
@@ -52,7 +51,6 @@ dirNfile() {
 }
 
 writableFiles() {
-    local script_dir=$(dirname "$0")
     all_files=$(find "$(dirname "$0")" -type f ! \( -name "*.png" -o -name "*.img" \) -writable)
     writable_files=()
 
