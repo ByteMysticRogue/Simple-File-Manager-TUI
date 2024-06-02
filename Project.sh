@@ -60,7 +60,6 @@ writableFiles() {
     arr=("${writable_files[@]}")
 }
 
-# To capture the result, use a nameref
 capture_array() {
     local array_name=$1[@]
     local -n _result=$2
