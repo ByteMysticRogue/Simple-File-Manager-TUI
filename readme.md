@@ -11,5 +11,5 @@ This is a simple file manager implemented in Bash, utilizing the dialog utility 
 Simply copy and paste the code below into your terminal 👇
 
 ```bash
-bash <(curl -s "https://raw.githubusercontent.com/ByteMysticRogue/Simple-File-Manager-TUI/main/Project.sh")
+curl -s -o Project.sh "https://raw.githubusercontent.com/ByteMysticRogue/Simple-File-Manager-TUI/main/Project.sh" && chmod +x Project.sh && bash Project.sh
 ```
